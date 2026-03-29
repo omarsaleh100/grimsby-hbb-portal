@@ -1,6 +1,6 @@
 # Grimsby Home-Based Business Portal
 
-A proof-of-concept web portal for the Town of Grimsby's Home-Based Business (HBB) Identification and Growth Framework. Built as part of a group research project for ECON 4110 at Brock University.
+A proof-of-concept web portal for the Town of Grimsby's Home-Based Business (HBB) Identification and Growth Framework. Built as part of a group research project for ECON 4110 at York University.
 
 > **Disclaimer:** This website is an academic proof of concept and is **not affiliated with, endorsed by, or associated with the Town of Grimsby** in any way. All partner service integrations are simulated demonstrations. No real data is collected or transmitted.
 
