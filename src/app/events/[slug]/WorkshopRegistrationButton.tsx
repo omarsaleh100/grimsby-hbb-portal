@@ -21,7 +21,7 @@ export default function WorkshopRegistrationButton({
         onClick={handleRegister}
         className="px-8 py-3 bg-white text-grimsby-dark font-semibold rounded-lg hover:bg-white/90 transition-colors shadow-lg text-sm"
       >
-        Register Now \u2014 $10
+        Register Now
       </button>
     );
   }
