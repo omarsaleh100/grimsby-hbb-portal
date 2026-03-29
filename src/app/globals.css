@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Grimsby official palette — extracted from grimsby.ca */
+  --color-grimsby: #29853D;
+  --color-grimsby-dark: #216A31;
+  --color-grimsby-light: #34a44d;
+  --color-grimsby-pale: #e8f5e9;
+  --color-teal: #0F738A;
+  --color-teal-light: #12899f;
+  --color-teal-pale: #e0f4f8;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Surfaces */
+  --color-surface: #f8f9fa;
+  --color-surface-card: #ffffff;
+
+  /* Borders */
+  --color-border: #dee2e6;
+  --color-border-dark: #ced4da;
+
+  /* Text — matches grimsby.ca body color */
+  --color-text: #393939;
+  --color-text-muted: #6c757d;
+  --color-text-light: #999999;
+
+  /* Legacy alias so existing `bg-navy`, `text-navy` classes still work
+     but now resolve to the Grimsby dark green instead of blue */
+  --color-navy: #216A31;
+  --color-navy-light: #29853D;
+
+  /* Fonts — Nunito Sans for body, Overpass for headings (matching grimsby.ca) */
+  --font-sans: 'Nunito Sans', sans-serif;
+  --font-heading: 'Overpass', sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
 }
