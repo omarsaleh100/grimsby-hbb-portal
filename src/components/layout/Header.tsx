@@ -7,11 +7,11 @@ import { useState } from 'react';
 import { Menu, X, Search } from 'lucide-react';
 
 const navLinks = [
-  { href: 'https://www.grimsby.ca/living-here/', label: 'Living In' },
-  { href: 'https://www.grimsby.ca/play-and-explore/', label: 'Parks, Recreation and Culture' },
+  { label: 'Living In', disabled: true },
+  { label: 'Parks, Recreation and Culture', disabled: true },
   { href: '/', label: 'Build and Invest', active: true },
-  { href: 'https://www.grimsby.ca/town-hall/', label: 'Town Hall' },
-];
+  { label: 'Town Hall', disabled: true },
+] as const;
 
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -36,11 +36,21 @@ export default function Header() {
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => {
-              const isActive = link.active || pathname === link.href;
+              const isActive = 'active' in link && link.active;
+              if ('disabled' in link && link.disabled) {
+                return (
+                  <span
+                    key={link.label}
+                    className="px-4 py-2 text-[17px] text-text-light cursor-default"
+                  >
+                    {link.label}
+                  </span>
+                );
+              }
               return (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={'href' in link ? link.href : '/'}
                   className={`px-4 py-2 text-[17px] transition-colors ${
                     isActive
                       ? 'text-grimsby font-semibold underline underline-offset-4 decoration-2 decoration-grimsby'
@@ -52,15 +62,14 @@ export default function Header() {
               );
             })}
             {/* "I Want To" button matching grimsby.ca */}
-            <Link
-              href="/resources"
-              className="ml-2 px-5 py-2 bg-grimsby text-white text-[15px] font-semibold rounded-none hover:bg-grimsby-dark transition-colors"
+            <span
+              className="ml-2 px-5 py-2 bg-grimsby/50 text-white text-[15px] font-semibold rounded-none cursor-default"
             >
               I Want To
-            </Link>
-            <button className="ml-2 p-2 text-text hover:text-teal transition-colors" aria-label="Search">
+            </span>
+            <span className="ml-2 p-2 text-text-light cursor-default" aria-label="Search">
               <Search size={20} />
-            </button>
+            </span>
           </nav>
 
           {/* Mobile hamburger */}
@@ -77,11 +86,21 @@ export default function Header() {
         {mobileOpen && (
           <nav className="lg:hidden pb-4 border-t border-border">
             {navLinks.map((link) => {
-              const isActive = link.active || pathname === link.href;
+              const isActive = 'active' in link && link.active;
+              if ('disabled' in link && link.disabled) {
+                return (
+                  <span
+                    key={link.label}
+                    className="block px-4 py-3 text-[17px] text-text-light cursor-default"
+                  >
+                    {link.label}
+                  </span>
+                );
+              }
               return (
                 <Link
                   key={link.label}
-                  href={link.href}
+                  href={'href' in link ? link.href : '/'}
                   onClick={() => setMobileOpen(false)}
                   className={`block px-4 py-3 text-[17px] ${
                     isActive ? 'text-grimsby font-semibold' : 'text-text hover:text-teal'
@@ -91,13 +110,11 @@ export default function Header() {
                 </Link>
               );
             })}
-            <Link
-              href="/resources"
-              onClick={() => setMobileOpen(false)}
-              className="block mx-4 mt-2 px-5 py-2 bg-grimsby text-white text-center font-semibold"
+            <span
+              className="block mx-4 mt-2 px-5 py-2 bg-grimsby/50 text-white text-center font-semibold cursor-default"
             >
               I Want To
-            </Link>
+            </span>
           </nav>
         )}
       </div>
